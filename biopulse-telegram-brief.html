@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bio Pulse Peptides — Telegram Community Structure</title>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange: #E8621A;
+    --orange-light: #F5832A;
+    --teal: #1E7FA0;
+    --teal-light: #2AAACF;
+    --teal-dark: #155F78;
+    --white: #FFFFFF;
+    --offwhite: #F0F4F6;
+    --bg: #0A0C0F;
+    --bg2: #111518;
+    --bg3: #181D22;
+    --muted: #6B7A85;
+    --border: rgba(255,255,255,0.07);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: relative;
+    overflow: hidden;
+    padding: 56px 48px 48px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg2);
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(232,98,26,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: 30%;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(30,127,160,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .header-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .logo-lockup {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .logo-text {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    line-height: 1;
+  }
+
+  .logo-text .bio { color: var(--orange); }
+  .logo-text .pulse { color: var(--teal-light); }
+
+  .logo-sub {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: var(--white);
+    opacity: 0.7;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  .pulse-icon {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+  }
+
+  .doc-tag {
+    display: inline-block;
+    background: rgba(30,127,160,0.15);
+    border: 1px solid rgba(44,170,207,0.3);
+    color: var(--teal-light);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 38px;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    margin-bottom: 14px;
+  }
+
+  h1 span {
+    background: linear-gradient(90deg, var(--orange-light), var(--teal-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-desc {
+    color: rgba(255,255,255,0.55);
+    font-size: 15px;
+    font-weight: 300;
+    max-width: 560px;
+    line-height: 1.7;
+  }
+
+  /* ── MAIN ── */
+  main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 48px 48px 72px;
+  }
+
+  /* ── SECTION TITLE ── */
+  .section-title {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(232,98,26,0.3), transparent);
+  }
+
+  /* ── OVERVIEW CARDS ── */
+  .overview-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+
+  .stat-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+  }
+
+  .stat-card.orange::before { background: linear-gradient(90deg, var(--orange), transparent); }
+  .stat-card.teal::before { background: linear-gradient(90deg, var(--teal-light), transparent); }
+  .stat-card.white::before { background: linear-gradient(90deg, rgba(255,255,255,0.4), transparent); }
+
+  .stat-num {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-card.orange .stat-num { color: var(--orange-light); }
+  .stat-card.teal .stat-num { color: var(--teal-light); }
+  .stat-card.white .stat-num { color: var(--white); }
+
+  .stat-label {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  /* ── STRUCTURE DIAGRAM ── */
+  .diagram-wrap {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 36px;
+    margin-bottom: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .diagram-wrap::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 350px; height: 350px;
+    background: radial-gradient(circle, rgba(30,127,160,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* Broadcast channel node */
+  .bc-node {
+    background: linear-gradient(135deg, rgba(232,98,26,0.15), rgba(232,98,26,0.05));
+    border: 1px solid rgba(232,98,26,0.4);
+    border-radius: 12px;
+    padding: 20px 28px;
+    text-align: center;
+    max-width: 360px;
+    margin: 0 auto 12px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .bc-node-label {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--orange-light);
+    margin-bottom: 4px;
+  }
+
+  .bc-node-sub {
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+  }
+
+  /* Admin node */
+  .admin-node {
+    background: linear-gradient(135deg, rgba(30,127,160,0.12), rgba(30,127,160,0.04));
+    border: 1px solid rgba(44,170,207,0.3);
+    border-radius: 10px;
+    padding: 14px 28px;
+    text-align: center;
+    max-width: 300px;
+    margin: 0 auto 12px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .admin-node-label {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--teal-light);
+    margin-bottom: 2px;
+  }
+
+  .admin-node-sub {
+    font-size: 11px;
+    color: rgba(255,255,255,0.35);
+  }
+
+  /* Arrow connector */
+  .connector {
+    display: flex;
+    justify-content: center;
+    margin: 0 0 4px;
+  }
+
+  .connector svg {
+    opacity: 0.4;
+  }
+
+  /* Subgroups grid */
+  .subgroups-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 8px;
+  }
+
+  .sg-node {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(44,170,207,0.2);
+    border-radius: 10px;
+    padding: 14px 12px;
+    text-align: center;
+  }
+
+  .sg-node-label {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--teal-light);
+    margin-bottom: 3px;
+  }
+
+  .sg-node-sub {
+    font-size: 11px;
+    color: rgba(255,255,255,0.3);
+  }
+
+  .sg-node.optional {
+    border-color: rgba(255,255,255,0.1);
+    opacity: 0.6;
+  }
+
+  .sg-node.optional .sg-node-label {
+    color: var(--muted);
+  }
+
+  /* Rose badge */
+  .rose-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  .rose-badge {
+    background: rgba(232,98,26,0.1);
+    border: 1px solid rgba(232,98,26,0.25);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--orange-light);
+    font-family: 'Exo 2', sans-serif;
+    letter-spacing: 0.5px;
+  }
+
+  .rose-desc {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  /* ── PHASES ── */
+  .phases-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 48px;
+  }
+
+  .phase-row {
+    display: grid;
+    grid-template-columns: 48px 1fr auto;
+    align-items: start;
+    gap: 20px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    transition: border-color 0.2s;
+  }
+
+  .phase-row:hover {
+    border-color: rgba(44,170,207,0.25);
+  }
+
+  .phase-num {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1;
+    color: rgba(255,255,255,0.08);
+  }
+
+  .phase-title {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+
+  .phase-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .phase-tag {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 100px;
+    white-space: nowrap;
+    align-self: flex-start;
+  }
+
+  .phase-tag.setup { background: rgba(232,98,26,0.12); color: var(--orange-light); border: 1px solid rgba(232,98,26,0.2); }
+  .phase-tag.build { background: rgba(44,170,207,0.1); color: var(--teal-light); border: 1px solid rgba(44,170,207,0.2); }
+  .phase-tag.config { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.5); border: 1px solid var(--border); }
+  .phase-tag.migrate { background: rgba(232,98,26,0.12); color: var(--orange-light); border: 1px solid rgba(232,98,26,0.2); }
+
+  /* ── OUTCOME ── */
+  .outcomes-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 48px;
+  }
+
+  .outcome-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+
+  .outcome-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+
+  .outcome-dot.orange { background: var(--orange-light); }
+  .outcome-dot.teal { background: var(--teal-light); }
+
+  .outcome-text {
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.6;
+  }
+
+  .outcome-text strong {
+    color: var(--white);
+    font-weight: 500;
+    display: block;
+    margin-bottom: 2px;
+    font-size: 13px;
+  }
+
+  /* ── TOOLS NEEDED ── */
+  .tools-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 48px;
+  }
+
+  .tool-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .tool-name {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+
+  .tool-desc {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .tool-cost {
+    display: inline-block;
+    background: rgba(30,127,160,0.12);
+    border: 1px solid rgba(44,170,207,0.2);
+    color: var(--teal-light);
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 12px;
+    border-radius: 100px;
+    font-family: 'Exo 2', sans-serif;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 28px 48px;
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-brand {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .footer-brand span.bio { color: var(--orange); }
+  .footer-brand span.pulse { color: var(--teal-light); }
+
+  .footer-date {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  header, .overview-grid, .diagram-wrap, .phases-list, .outcomes-grid, .tools-row {
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .overview-grid { animation-delay: 0.1s; }
+  .diagram-wrap { animation-delay: 0.15s; }
+  .phases-list { animation-delay: 0.2s; }
+  .outcomes-grid { animation-delay: 0.25s; }
+  .tools-row { animation-delay: 0.3s; }
+
+  @media (max-width: 680px) {
+    header, main { padding: 32px 24px; }
+    .overview-grid, .subgroups-row, .tools-row, .outcomes-grid { grid-template-columns: 1fr; }
+    h1 { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo-lockup">
+      <svg class="pulse-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="22" cy="22" r="21" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+        <polyline points="4,22 10,22 14,10 18,34 22,18 26,28 30,22 40,22" stroke="url(#pg)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <defs>
+          <linearGradient id="pg" x1="4" y1="22" x2="40" y2="22">
+            <stop offset="0%" stop-color="#E8621A"/>
+            <stop offset="100%" stop-color="#2AAACF"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <div>
+        <div class="logo-text"><span class="bio">Bio</span><span class="pulse">Pulse</span></div>
+        <div class="logo-sub">Peptides</div>
+      </div>
+    </div>
+
+    <div class="doc-tag">Community Infrastructure Brief</div>
+    <h1>Telegram Community<br><span>Structure &amp; Rollout Plan</span></h1>
+    <p class="header-desc">A structured breakdown of how we will build, configure, and migrate the Bio Pulse Peptides community into a scalable, secure, and manageable Telegram ecosystem.</p>
+  </div>
+</header>
+
+<main>
+
+  <!-- Overview stats -->
+  <div class="section-title">At a glance</div>
+  <div class="overview-grid">
+    <div class="stat-card orange">
+      <div class="stat-num">500+</div>
+      <div class="stat-label">Existing community members to migrate</div>
+    </div>
+    <div class="stat-card teal">
+      <div class="stat-num">5–6</div>
+      <div class="stat-label">Independent subgroups, 100–150 members each</div>
+    </div>
+    <div class="stat-card white">
+      <div class="stat-num">1</div>
+      <div class="stat-label">Central broadcast channel — single source of truth</div>
+    </div>
+  </div>
+
+  <!-- Structure diagram -->
+  <div class="section-title">Community structure</div>
+  <div class="diagram-wrap">
+
+    <div class="bc-node">
+      <div class="bc-node-label">Main Broadcast Channel</div>
+      <div class="bc-node-sub">Official announcements · admin post only · all members subscribed</div>
+    </div>
+
+    <div class="connector">
+      <svg width="2" height="28"><line x1="1" y1="0" x2="1" y2="28" stroke="#E8621A" stroke-width="1.5" stroke-dasharray="4 3"/></svg>
+    </div>
+
+    <div class="admin-node">
+      <div class="admin-node-label">Admin Oversight Layer</div>
+      <div class="admin-node-sub">Full access across all subgroups at all times</div>
+    </div>
+
+    <div class="connector">
+      <svg width="2" height="24"><line x1="1" y1="0" x2="1" y2="24" stroke="#2AAACF" stroke-width="1.5" stroke-dasharray="4 3"/></svg>
+    </div>
+
+    <div class="subgroups-row">
+      <div class="sg-node">
+        <div class="sg-node-label">Group 1</div>
+        <div class="sg-node-sub">100–150 members</div>
+      </div>
+      <div class="sg-node">
+        <div class="sg-node-label">Group 2</div>
+        <div class="sg-node-sub">100–150 members</div>
+      </div>
+      <div class="sg-node">
+        <div class="sg-node-label">Group 3</div>
+        <div class="sg-node-sub">100–150 members</div>
+      </div>
+      <div class="sg-node">
+        <div class="sg-node-label">Group 4</div>
+        <div class="sg-node-sub">100–150 members</div>
+      </div>
+      <div class="sg-node">
+        <div class="sg-node-label">Group 5</div>
+        <div class="sg-node-sub">100–150 members</div>
+      </div>
+      <div class="sg-node optional">
+        <div class="sg-node-label">Group 6</div>
+        <div class="sg-node-sub">Optional · expand later</div>
+      </div>
+    </div>
+
+    <div class="rose-row">
+      <div class="rose-badge">Rose Bot</div>
+      <div class="rose-desc">Active in every subgroup — moderation, screening, spam control, and warnings</div>
+    </div>
+
+  </div>
+
+  <!-- Phases -->
+  <div class="section-title">Build phases</div>
+  <div class="phases-list">
+
+    <div class="phase-row">
+      <div class="phase-num">01</div>
+      <div>
+        <div class="phase-title">Create the main broadcast channel</div>
+        <div class="phase-desc">Set up the central Telegram channel. Add admins. Configure pinned welcome message. This becomes the single source of truth for all official communications.</div>
+      </div>
+      <div class="phase-tag setup">Setup</div>
+    </div>
+
+    <div class="phase-row">
+      <div class="phase-num">02</div>
+      <div>
+        <div class="phase-title">Create the subgroups</div>
+        <div class="phase-desc">Build 5–6 private, independent Telegram supergroups. Each isolated from the others. All admins added to every group with administrator rights. Member capacity capped at 150.</div>
+      </div>
+      <div class="phase-tag build">Build</div>
+    </div>
+
+    <div class="phase-row">
+      <div class="phase-num">03</div>
+      <div>
+        <div class="phase-title">Connect broadcast to all subgroups</div>
+        <div class="phase-desc">Configure automatic message forwarding from the broadcast channel into every subgroup. One post by an admin instantly distributes to all groups simultaneously.</div>
+      </div>
+      <div class="phase-tag build">Build</div>
+    </div>
+
+    <div class="phase-row">
+      <div class="phase-num">04</div>
+      <div>
+        <div class="phase-title">Configure Rose Bot in each group</div>
+        <div class="phase-desc">Add and configure Rose Bot across all subgroups. Set welcome messages, group rules, anti-spam thresholds, link blocking, captcha screening, and automated warning limits.</div>
+      </div>
+      <div class="phase-tag config">Config</div>
+    </div>
+
+    <div class="phase-row">
+      <div class="phase-num">05</div>
+      <div>
+        <div class="phase-title">Member migration</div>
+        <div class="phase-desc">Announce the new structure to existing members. Distribute unique invite links in batches of ~100–150 per group. Monitor intake and close old groups once migration is complete.</div>
+      </div>
+      <div class="phase-tag migrate">Migration</div>
+    </div>
+
+  </div>
+
+  <!-- Outcomes -->
+  <div class="section-title">What this delivers</div>
+  <div class="outcomes-grid">
+    <div class="outcome-item">
+      <div class="outcome-dot orange"></div>
+      <div class="outcome-text">
+        <strong>Single source of truth</strong>
+        Admins post once. All groups receive the message instantly and consistently.
+      </div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-dot teal"></div>
+      <div class="outcome-text">
+        <strong>Contained security</strong>
+        Bad actors are isolated within one group and cannot affect the wider community.
+      </div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-dot orange"></div>
+      <div class="outcome-text">
+        <strong>Improved member experience</strong>
+        Smaller groups mean conversations are readable, followable, and engaging.
+      </div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-dot teal"></div>
+      <div class="outcome-text">
+        <strong>Full admin visibility</strong>
+        Admins can enter, monitor, and engage in any subgroup at any time.
+      </div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-dot orange"></div>
+      <div class="outcome-text">
+        <strong>Scalable infrastructure</strong>
+        Additional groups can be added as the community grows beyond 900 members.
+      </div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-dot teal"></div>
+      <div class="outcome-text">
+        <strong>Automated moderation</strong>
+        Rose Bot handles routine enforcement so admins focus on community, not policing.
+      </div>
+    </div>
+  </div>
+
+  <!-- Tools -->
+  <div class="section-title">Tools required</div>
+  <div class="tools-row">
+    <div class="tool-card">
+      <div class="tool-name">Telegram</div>
+      <div class="tool-desc">Channel, supergroups, admin controls, invite links</div>
+      <div class="tool-cost">Free</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">Rose Bot</div>
+      <div class="tool-desc">Moderation, screening, rules enforcement, warnings</div>
+      <div class="tool-cost">Free</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">Broadcast Bot</div>
+      <div class="tool-desc">Auto-forwards channel posts into all subgroups</div>
+      <div class="tool-cost">Free</div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-brand"><span class="bio">Bio</span><span class="pulse">Pulse</span> Peptides — Community Infrastructure</div>
+  <div class="footer-date">Prepared March 2026</div>
+</footer>
+
+</body>
+</html>
