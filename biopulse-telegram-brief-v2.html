@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bio Pulse Peptides — Telegram Community Structure v2</title>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange: #E8621A;
+    --orange-light: #F5832A;
+    --teal: #1E7FA0;
+    --teal-light: #2AAACF;
+    --teal-dark: #155F78;
+    --white: #FFFFFF;
+    --bg: #0A0C0F;
+    --bg2: #111518;
+    --bg3: #181D22;
+    --muted: #6B7A85;
+    --border: rgba(255,255,255,0.07);
+    --red: #C0392B;
+    --red-light: #E74C3C;
+    --green: #1A8A4A;
+    --green-light: #27AE60;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: relative;
+    overflow: hidden;
+    padding: 56px 48px 48px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg2);
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(232,98,26,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: 30%;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(30,127,160,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .header-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .logo-lockup {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .logo-text {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    line-height: 1;
+  }
+
+  .logo-text .bio { color: var(--orange); }
+  .logo-text .pulse { color: var(--teal-light); }
+
+  .logo-sub {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: var(--white);
+    opacity: 0.7;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  .pulse-icon { width: 44px; height: 44px; flex-shrink: 0; }
+
+  .doc-tag {
+    display: inline-block;
+    background: rgba(30,127,160,0.15);
+    border: 1px solid rgba(44,170,207,0.3);
+    color: var(--teal-light);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-bottom: 16px;
+  }
+
+  .version-tag {
+    display: inline-block;
+    background: rgba(232,98,26,0.12);
+    border: 1px solid rgba(232,98,26,0.25);
+    color: var(--orange-light);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-bottom: 16px;
+    margin-left: 8px;
+  }
+
+  h1 {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 38px;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    margin-bottom: 14px;
+  }
+
+  h1 span {
+    background: linear-gradient(90deg, var(--orange-light), var(--teal-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-desc {
+    color: rgba(255,255,255,0.55);
+    font-size: 15px;
+    font-weight: 300;
+    max-width: 600px;
+    line-height: 1.7;
+  }
+
+  /* ── MAIN ── */
+  main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 48px 48px 72px;
+  }
+
+  /* ── SECTION TITLE ── */
+  .section-title {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(232,98,26,0.3), transparent);
+  }
+
+  /* ── OVERVIEW CARDS ── */
+  .overview-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+
+  .stat-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+  }
+
+  .stat-card.orange::before { background: linear-gradient(90deg, var(--orange), transparent); }
+  .stat-card.teal::before { background: linear-gradient(90deg, var(--teal-light), transparent); }
+  .stat-card.white::before { background: linear-gradient(90deg, rgba(255,255,255,0.4), transparent); }
+
+  .stat-num {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-card.orange .stat-num { color: var(--orange-light); }
+  .stat-card.teal .stat-num { color: var(--teal-light); }
+  .stat-card.white .stat-num { color: var(--white); }
+  .stat-label { font-size: 13px; color: var(--muted); font-weight: 400; }
+
+  /* ── STRUCTURE DIAGRAM ── */
+  .diagram-wrap {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 36px;
+    margin-bottom: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .diagram-wrap::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 350px; height: 350px;
+    background: radial-gradient(circle, rgba(30,127,160,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .bc-node {
+    background: linear-gradient(135deg, rgba(232,98,26,0.15), rgba(232,98,26,0.05));
+    border: 1px solid rgba(232,98,26,0.4);
+    border-radius: 12px;
+    padding: 20px 28px;
+    text-align: center;
+    max-width: 360px;
+    margin: 0 auto 12px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .bc-node-label {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--orange-light);
+    margin-bottom: 4px;
+  }
+
+  .bc-node-sub { font-size: 12px; color: rgba(255,255,255,0.45); }
+
+  .admin-node {
+    background: linear-gradient(135deg, rgba(30,127,160,0.12), rgba(30,127,160,0.04));
+    border: 1px solid rgba(44,170,207,0.3);
+    border-radius: 10px;
+    padding: 14px 28px;
+    text-align: center;
+    max-width: 300px;
+    margin: 0 auto 12px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .admin-node-label {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--teal-light);
+    margin-bottom: 2px;
+  }
+
+  .admin-node-sub { font-size: 11px; color: rgba(255,255,255,0.35); }
+
+  .connector {
+    display: flex;
+    justify-content: center;
+    margin: 0 0 4px;
+  }
+
+  .connector svg { opacity: 0.4; }
+
+  .subgroups-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 8px;
+  }
+
+  .sg-node {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(44,170,207,0.2);
+    border-radius: 10px;
+    padding: 14px 12px;
+    text-align: center;
+  }
+
+  .sg-node-label {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--teal-light);
+    margin-bottom: 3px;
+  }
+
+  .sg-node-sub { font-size: 11px; color: rgba(255,255,255,0.3); }
+
+  .sg-node.optional {
+    border-color: rgba(255,255,255,0.1);
+    opacity: 0.6;
+  }
+
+  .sg-node.optional .sg-node-label { color: var(--muted); }
+
+  .federation-bar {
+    margin-top: 16px;
+    background: rgba(30,127,160,0.08);
+    border: 1px solid rgba(44,170,207,0.2);
+    border-radius: 8px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .federation-pill {
+    background: rgba(44,170,207,0.15);
+    border: 1px solid rgba(44,170,207,0.3);
+    color: var(--teal-light);
+    font-family: 'Exo 2', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 4px 12px;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+
+  .federation-desc { font-size: 12px; color: var(--muted); }
+
+  .rose-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+
+  .rose-badge {
+    background: rgba(232,98,26,0.1);
+    border: 1px solid rgba(232,98,26,0.25);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--orange-light);
+    font-family: 'Exo 2', sans-serif;
+    letter-spacing: 0.5px;
+  }
+
+  .rose-desc { font-size: 12px; color: var(--muted); }
+
+  /* ── PHASES ── */
+  .phases-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 48px;
+  }
+
+  .phase-row {
+    display: grid;
+    grid-template-columns: 48px 1fr auto;
+    align-items: start;
+    gap: 20px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    transition: border-color 0.2s;
+  }
+
+  .phase-row:hover { border-color: rgba(44,170,207,0.25); }
+
+  .phase-num {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1;
+    color: rgba(255,255,255,0.08);
+  }
+
+  .phase-title {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+
+  .phase-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  .phase-tag {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 100px;
+    white-space: nowrap;
+    align-self: flex-start;
+  }
+
+  .phase-tag.setup { background: rgba(232,98,26,0.12); color: var(--orange-light); border: 1px solid rgba(232,98,26,0.2); }
+  .phase-tag.build { background: rgba(44,170,207,0.1); color: var(--teal-light); border: 1px solid rgba(44,170,207,0.2); }
+  .phase-tag.config { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.5); border: 1px solid var(--border); }
+  .phase-tag.migrate { background: rgba(232,98,26,0.12); color: var(--orange-light); border: 1px solid rgba(232,98,26,0.2); }
+
+  /* ── ROSE FEDERATION ── */
+  .federation-explainer {
+    background: var(--bg3);
+    border: 1px solid rgba(44,170,207,0.2);
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 48px;
+  }
+
+  .federation-explainer h3 {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--teal-light);
+    margin-bottom: 8px;
+  }
+
+  .federation-explainer p {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 20px;
+    line-height: 1.7;
+  }
+
+  .federation-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .fed-step {
+    background: rgba(44,170,207,0.05);
+    border: 1px solid rgba(44,170,207,0.15);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+  }
+
+  .fed-step-num {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--teal-light);
+    margin-bottom: 6px;
+    opacity: 0.5;
+  }
+
+  .fed-step-title {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+
+  .fed-step-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+  /* ── MODERATION PLAYBOOK ── */
+  .playbook-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 48px;
+  }
+
+  .playbook-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+  }
+
+  .playbook-card-title {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .playbook-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .playbook-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+
+  .playbook-dot.orange { background: var(--orange-light); }
+  .playbook-dot.teal { background: var(--teal-light); }
+
+  .playbook-text { font-size: 12px; color: var(--muted); line-height: 1.5; }
+  .playbook-text strong { color: rgba(255,255,255,0.7); font-weight: 500; }
+
+  /* ── MIGRATION PLAN ── */
+  .migration-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 48px;
+    position: relative;
+  }
+
+  .migration-timeline::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 24px;
+    bottom: 24px;
+    width: 1px;
+    background: linear-gradient(180deg, var(--orange), var(--teal-light));
+    opacity: 0.3;
+  }
+
+  .migration-step {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 20px;
+    padding: 0 0 20px;
+    position: relative;
+  }
+
+  .migration-step:last-child { padding-bottom: 0; }
+
+  .m-dot {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--orange-light);
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .m-content {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+  }
+
+  .m-title {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+
+  .m-desc { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+  .m-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 100px;
+    margin-bottom: 8px;
+  }
+
+  .m-tag.week1 { background: rgba(232,98,26,0.12); color: var(--orange-light); border: 1px solid rgba(232,98,26,0.2); }
+  .m-tag.week2 { background: rgba(44,170,207,0.1); color: var(--teal-light); border: 1px solid rgba(44,170,207,0.2); }
+  .m-tag.week3 { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.4); border: 1px solid var(--border); }
+
+  /* ── NOT BUILDING ── */
+  .not-building {
+    background: var(--bg3);
+    border: 1px solid rgba(192,57,43,0.2);
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 48px;
+  }
+
+  .not-building h3 {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 6px;
+  }
+
+  .not-building p {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 20px;
+    line-height: 1.7;
+  }
+
+  .not-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .not-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    background: rgba(192,57,43,0.05);
+    border: 1px solid rgba(192,57,43,0.12);
+    border-radius: 10px;
+    padding: 14px 18px;
+    align-items: start;
+  }
+
+  .not-item-left { }
+
+  .not-label {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 3px;
+    text-decoration: line-through;
+    text-decoration-color: rgba(192,57,43,0.5);
+  }
+
+  .not-reason { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+  .not-instead {
+    font-size: 12px;
+    color: rgba(39,174,96,0.9);
+    line-height: 1.5;
+  }
+
+  .not-instead::before {
+    content: 'Instead: ';
+    font-weight: 600;
+  }
+
+  /* ── OUTCOMES ── */
+  .outcomes-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 48px;
+  }
+
+  .outcome-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+
+  .outcome-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 6px; }
+  .outcome-dot.orange { background: var(--orange-light); }
+  .outcome-dot.teal { background: var(--teal-light); }
+
+  .outcome-text { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.6; }
+  .outcome-text strong { color: var(--white); font-weight: 500; display: block; margin-bottom: 2px; font-size: 13px; }
+
+  /* ── TOOLS ── */
+  .tools-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 48px;
+  }
+
+  .tool-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .tool-name { font-family: 'Exo 2', sans-serif; font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+  .tool-desc { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
+  .tool-cost {
+    display: inline-block;
+    background: rgba(30,127,160,0.12);
+    border: 1px solid rgba(44,170,207,0.2);
+    color: var(--teal-light);
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 12px;
+    border-radius: 100px;
+    font-family: 'Exo 2', sans-serif;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 28px 48px;
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-brand { font-family: 'Exo 2', sans-serif; font-size: 13px; color: var(--muted); }
+  .footer-brand span.bio { color: var(--orange); }
+  .footer-brand span.pulse { color: var(--teal-light); }
+  .footer-date { font-size: 12px; color: var(--muted); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  header { animation: fadeUp 0.4s ease both; }
+  .overview-grid { animation: fadeUp 0.4s ease both 0.1s; }
+  .diagram-wrap { animation: fadeUp 0.4s ease both 0.15s; }
+  .phases-list { animation: fadeUp 0.4s ease both 0.2s; }
+  .federation-explainer { animation: fadeUp 0.4s ease both 0.22s; }
+  .playbook-grid { animation: fadeUp 0.4s ease both 0.24s; }
+  .migration-timeline { animation: fadeUp 0.4s ease both 0.26s; }
+  .not-building { animation: fadeUp 0.4s ease both 0.28s; }
+  .outcomes-grid { animation: fadeUp 0.4s ease both 0.3s; }
+  .tools-row { animation: fadeUp 0.4s ease both 0.32s; }
+
+  @media (max-width: 680px) {
+    header, main { padding: 32px 24px; }
+    .overview-grid, .subgroups-row, .tools-row, .outcomes-grid, .playbook-grid, .federation-steps, .not-item { grid-template-columns: 1fr; }
+    h1 { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo-lockup">
+      <svg class="pulse-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="22" cy="22" r="21" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+        <polyline points="4,22 10,22 14,10 18,34 22,18 26,28 30,22 40,22" stroke="url(#pg)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <defs>
+          <linearGradient id="pg" x1="4" y1="22" x2="40" y2="22">
+            <stop offset="0%" stop-color="#E8621A"/>
+            <stop offset="100%" stop-color="#2AAACF"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <div>
+        <div class="logo-text"><span class="bio">Bio</span><span class="pulse">Pulse</span></div>
+        <div class="logo-sub">Peptides</div>
+      </div>
+    </div>
+    <div>
+      <span class="doc-tag">Community Infrastructure Brief</span>
+      <span class="version-tag">Version 2</span>
+    </div>
+    <h1>Telegram Community<br><span>Updated Structure &amp; Plan</span></h1>
+    <p class="header-desc">Updated following client feedback. This version clarifies exactly what we are building, what we are not building, and why — so the project stays on track, on budget, and deliverable.</p>
+  </div>
+</header>
+
+<main>
+
+  <!-- Overview stats -->
+  <div class="section-title">At a glance</div>
+  <div class="overview-grid">
+    <div class="stat-card orange">
+      <div class="stat-num">500+</div>
+      <div class="stat-label">Existing community members to migrate</div>
+    </div>
+    <div class="stat-card teal">
+      <div class="stat-num">5–6</div>
+      <div class="stat-label">Independent subgroups, 100–150 members each</div>
+    </div>
+    <div class="stat-card white">
+      <div class="stat-num">0</div>
+      <div class="stat-label">Custom bots being coded — all off-the-shelf tools</div>
+    </div>
+  </div>
+
+  <!-- Structure diagram -->
+  <div class="section-title">Community structure</div>
+  <div class="diagram-wrap">
+    <div class="bc-node">
+      <div class="bc-node-label">Main Broadcast Channel</div>
+      <div class="bc-node-sub">Official announcements · admin post only · all members subscribed</div>
+    </div>
+    <div class="connector">
+      <svg width="2" height="28"><line x1="1" y1="0" x2="1" y2="28" stroke="#E8621A" stroke-width="1.5" stroke-dasharray="4 3"/></svg>
+    </div>
+    <div class="admin-node">
+      <div class="admin-node-label">Admin Oversight Layer</div>
+      <div class="admin-node-sub">Full access across all subgroups at all times</div>
+    </div>
+    <div class="connector">
+      <svg width="2" height="24"><line x1="1" y1="0" x2="1" y2="24" stroke="#2AAACF" stroke-width="1.5" stroke-dasharray="4 3"/></svg>
+    </div>
+    <div class="subgroups-row">
+      <div class="sg-node"><div class="sg-node-label">Group 1</div><div class="sg-node-sub">100–150 members</div></div>
+      <div class="sg-node"><div class="sg-node-label">Group 2</div><div class="sg-node-sub">100–150 members</div></div>
+      <div class="sg-node"><div class="sg-node-label">Group 3</div><div class="sg-node-sub">100–150 members</div></div>
+      <div class="sg-node"><div class="sg-node-label">Group 4</div><div class="sg-node-sub">100–150 members</div></div>
+      <div class="sg-node"><div class="sg-node-label">Group 5</div><div class="sg-node-sub">100–150 members</div></div>
+      <div class="sg-node optional"><div class="sg-node-label">Group 6</div><div class="sg-node-sub">Optional · expand later</div></div>
+    </div>
+    <div class="federation-bar">
+      <div class="federation-pill">Rose Federation</div>
+      <div class="federation-desc">A ban in any one group automatically applies across all linked groups — one action, community-wide protection</div>
+    </div>
+    <div class="rose-row">
+      <div class="rose-badge">Rose Bot</div>
+      <div class="rose-desc">Active in every subgroup — moderation, screening, spam control, warnings, and federation bans</div>
+    </div>
+  </div>
+
+  <!-- Build phases -->
+  <div class="section-title">Build phases</div>
+  <div class="phases-list">
+    <div class="phase-row">
+      <div class="phase-num">01</div>
+      <div>
+        <div class="phase-title">Create the main broadcast channel</div>
+        <div class="phase-desc">Set up the central Telegram channel. Add admins. Configure pinned welcome message. This becomes the single source of truth for all official communications.</div>
+      </div>
+      <div class="phase-tag setup">Setup</div>
+    </div>
+    <div class="phase-row">
+      <div class="phase-num">02</div>
+      <div>
+        <div class="phase-title">Create the subgroups</div>
+        <div class="phase-desc">Build 5–6 private, independent Telegram supergroups. Each isolated from the others. All admins added to every group with administrator rights. Member capacity capped at 150.</div>
+      </div>
+      <div class="phase-tag build">Build</div>
+    </div>
+    <div class="phase-row">
+      <div class="phase-num">03</div>
+      <div>
+        <div class="phase-title">Connect broadcast to all subgroups</div>
+        <div class="phase-desc">Configure a free forwarding bot to automatically push every broadcast channel post into all subgroups simultaneously. No coding required — this is an off-the-shelf tool configured in minutes.</div>
+      </div>
+      <div class="phase-tag build">Build</div>
+    </div>
+    <div class="phase-row">
+      <div class="phase-num">04</div>
+      <div>
+        <div class="phase-title">Configure Rose Bot and set up Federation</div>
+        <div class="phase-desc">Add Rose to all subgroups, apply a consistent moderation config, and link all groups into one Federation. A ban in any group instantly applies across the entire community.</div>
+      </div>
+      <div class="phase-tag config">Config</div>
+    </div>
+    <div class="phase-row">
+      <div class="phase-num">05</div>
+      <div>
+        <div class="phase-title">Member migration</div>
+        <div class="phase-desc">Announce the new structure, distribute invite links in controlled batches, set a firm deadline for the old group, then close it. Clean, structured, and final.</div>
+      </div>
+      <div class="phase-tag migrate">Migration</div>
+    </div>
+  </div>
+
+  <!-- Rose Federation -->
+  <div class="section-title">Rose federation explained</div>
+  <div class="federation-explainer">
+    <h3>What is Rose Federation?</h3>
+    <p>Rose Federation is a built-in feature of Rose Bot that links multiple groups together for moderation purposes. Without it, banning a bad actor in Group 1 does nothing to stop them joining Group 2, 3, or 4. With Federation active, one ban covers the entire community instantly — no admin needs to manually action it in every group.</p>
+    <div class="federation-steps">
+      <div class="fed-step">
+        <div class="fed-step-num">01</div>
+        <div class="fed-step-title">Create the Federation</div>
+        <div class="fed-step-desc">One admin creates a named Federation using a simple Rose command. Takes under a minute.</div>
+      </div>
+      <div class="fed-step">
+        <div class="fed-step-num">02</div>
+        <div class="fed-step-title">Link all groups</div>
+        <div class="fed-step-desc">Each subgroup is joined to the Federation. Rose handles the rest automatically across all linked chats.</div>
+      </div>
+      <div class="fed-step">
+        <div class="fed-step-num">03</div>
+        <div class="fed-step-title">Ban once, protect all</div>
+        <div class="fed-step-desc">Any federation-level ban instantly removes and blocks the user from every linked group simultaneously.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Moderation playbook -->
+  <div class="section-title">Moderation playbook</div>
+  <div class="playbook-grid">
+    <div class="playbook-card">
+      <div class="playbook-card-title">Rose Bot — settings in every group</div>
+      <div class="playbook-item"><div class="playbook-dot teal"></div><div class="playbook-text"><strong>Captcha on</strong> — every new joiner must verify before they can post</div></div>
+      <div class="playbook-item"><div class="playbook-dot teal"></div><div class="playbook-text"><strong>Link blocking</strong> — members cannot post external links or invite URLs</div></div>
+      <div class="playbook-item"><div class="playbook-dot teal"></div><div class="playbook-text"><strong>Flood control</strong> — automatic mute after 5 rapid messages</div></div>
+      <div class="playbook-item"><div class="playbook-dot teal"></div><div class="playbook-text"><strong>Warning system</strong> — 3 warnings triggers an automatic ban</div></div>
+      <div class="playbook-item"><div class="playbook-dot teal"></div><div class="playbook-text"><strong>Welcome message</strong> — automated greeting with group rules on join</div></div>
+    </div>
+    <div class="playbook-card">
+      <div class="playbook-card-title">Admin responsibilities</div>
+      <div class="playbook-item"><div class="playbook-dot orange"></div><div class="playbook-text"><strong>One lead moderator per group</strong> — clear ownership, no confusion</div></div>
+      <div class="playbook-item"><div class="playbook-dot orange"></div><div class="playbook-text"><strong>Consistent rules</strong> — same ruleset pinned in every group, no variation</div></div>
+      <div class="playbook-item"><div class="playbook-dot orange"></div><div class="playbook-text"><strong>Federation bans only</strong> — always ban at federation level, never just group level</div></div>
+      <div class="playbook-item"><div class="playbook-dot orange"></div><div class="playbook-text"><strong>No cross-group links</strong> — members must not be able to find other subgroups</div></div>
+      <div class="playbook-item"><div class="playbook-dot orange"></div><div class="playbook-text"><strong>Broadcast channel only</strong> — all official posts go through the channel, never directly into groups</div></div>
+    </div>
+  </div>
+
+  <!-- Migration plan -->
+  <div class="section-title">Migration deadline plan</div>
+  <div class="migration-timeline">
+    <div class="migration-step">
+      <div class="m-dot">1</div>
+      <div class="m-content">
+        <div class="m-tag week1">Week 1</div>
+        <div class="m-title">Announce the move</div>
+        <div class="m-desc">Post in the existing group explaining the new structure, why it is happening, and what members need to do. Pin the message. Give a clear deadline date.</div>
+      </div>
+    </div>
+    <div class="migration-step">
+      <div class="m-dot">2</div>
+      <div class="m-content">
+        <div class="m-tag week1">Week 1–2</div>
+        <div class="m-title">Distribute invite links in batches</div>
+        <div class="m-desc">Send individual invite links to members in controlled batches of 100–150. Each batch goes to a different subgroup. Track who has moved across.</div>
+      </div>
+    </div>
+    <div class="migration-step">
+      <div class="m-dot">3</div>
+      <div class="m-content">
+        <div class="m-tag week2">Week 2</div>
+        <div class="m-title">Set the old group to read-only</div>
+        <div class="m-desc">Remove posting rights from all members in the old group. Pin a final message with the deadline and the action required. Admins only can still post reminders.</div>
+      </div>
+    </div>
+    <div class="migration-step">
+      <div class="m-dot">4</div>
+      <div class="m-content">
+        <div class="m-tag week3">Week 3</div>
+        <div class="m-title">Close the old group</div>
+        <div class="m-desc">On the agreed deadline, the old group is archived or deleted. No exceptions. A hard deadline is the only way to ensure a clean migration with no stragglers.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- What we are NOT building -->
+  <div class="section-title">What we are not building — and why</div>
+  <div class="not-building">
+    <h3>Keeping this realistic and deliverable</h3>
+    <p>Some suggestions in the original brief describe developer-level infrastructure that is unnecessary at this scale and would require significant ongoing maintenance. The following items are out of scope — and the community will run perfectly well without them.</p>
+    <div class="not-grid">
+      <div class="not-item">
+        <div class="not-item-left">
+          <div class="not-label">Custom distribution bot</div>
+          <div class="not-reason">Requires a developer, a hosted server, ongoing maintenance, and costs money. Completely unnecessary for a 500-person community.</div>
+        </div>
+        <div class="not-instead">A free off-the-shelf forwarding bot does exactly the same job in minutes with no code and no server.</div>
+      </div>
+      <div class="not-item">
+        <div class="not-item-left">
+          <div class="not-label">Delivery logs and retry queues</div>
+          <div class="not-reason">An ops-level monitoring system built for enterprise platforms. Overkill by a significant margin for this use case.</div>
+        </div>
+        <div class="not-instead">If a message fails to forward, an admin simply reposts it. This will be a rare edge case, not a daily problem.</div>
+      </div>
+      <div class="not-item">
+        <div class="not-item-left">
+          <div class="not-label">Separate admin monitoring bot</div>
+          <div class="not-reason">Rose Bot already covers moderation logging, warnings, and ban tracking across all groups via Federation.</div>
+        </div>
+        <div class="not-instead">Rose Federation gives admins a unified view of bans and moderation actions without any extra tooling.</div>
+      </div>
+      <div class="not-item">
+        <div class="not-item-left">
+          <div class="not-label">Join spike and spam spike alerts</div>
+          <div class="not-reason">At 500 members across 5 groups, admins will naturally notice unusual activity. Automated alerting is not needed at this scale.</div>
+        </div>
+        <div class="not-instead">Rose flood control and captcha screening will catch and suppress the vast majority of spam automatically.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scalability -->
+  <div class="section-title">Scaling as the community grows</div>
+  <div style="background: var(--bg3); border: 1px solid var(--border); border-radius: 16px; padding: 32px; margin-bottom: 48px;">
+
+    <p style="font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 24px;">The structure is built to grow. As membership increases, new subgroups are simply added and connected to the existing broadcast and Federation. No rebuild required — just open a new group, add the forwarding bot, link it to the Federation, and point new joiners there.</p>
+
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 28px;">
+      <div style="background: rgba(232,98,26,0.07); border: 1px solid rgba(232,98,26,0.18); border-radius: 10px; padding: 18px; text-align: center;">
+        <div style="font-family: 'Exo 2', sans-serif; font-size: 22px; font-weight: 800; color: var(--orange-light); margin-bottom: 4px;">500+</div>
+        <div style="font-family: 'Exo 2', sans-serif; font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.6); margin-bottom: 6px;">Launch</div>
+        <div style="font-size: 12px; color: var(--muted);">5 groups · free · no issues</div>
+      </div>
+      <div style="background: rgba(44,170,207,0.07); border: 1px solid rgba(44,170,207,0.18); border-radius: 10px; padding: 18px; text-align: center;">
+        <div style="font-family: 'Exo 2', sans-serif; font-size: 22px; font-weight: 800; color: var(--teal-light); margin-bottom: 4px;">1,500</div>
+        <div style="font-family: 'Exo 2', sans-serif; font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.6); margin-bottom: 6px;">Growth</div>
+        <div style="font-size: 12px; color: var(--muted);">10 groups · free · 2 admin accounts</div>
+      </div>
+      <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 10px; padding: 18px; text-align: center;">
+        <div style="font-family: 'Exo 2', sans-serif; font-size: 22px; font-weight: 800; color: rgba(255,255,255,0.5); margin-bottom: 4px;">2,000+</div>
+        <div style="font-family: 'Exo 2', sans-serif; font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.6); margin-bottom: 6px;">Scale</div>
+        <div style="font-size: 12px; color: var(--muted);">14 groups · free · 3 admin accounts</div>
+      </div>
+    </div>
+
+    <div style="background: rgba(44,170,207,0.05); border: 1px solid rgba(44,170,207,0.15); border-radius: 10px; padding: 18px; margin-bottom: 16px;">
+      <div style="font-family: 'Exo 2', sans-serif; font-size: 13px; font-weight: 700; color: var(--teal-light); margin-bottom: 6px;">How new joiners are directed automatically</div>
+      <div style="font-size: 12px; color: var(--muted); line-height: 1.7;">When a new group is needed, a fresh invite link is generated and shared with incoming members only. Existing members stay in their current group. The broadcast channel and Rose Federation both update in minutes — add the new group to the forwarding bot and the Federation, and it is live. No disruption to existing members whatsoever.</div>
+    </div>
+
+    <div style="background: rgba(232,98,26,0.05); border: 1px solid rgba(232,98,26,0.15); border-radius: 10px; padding: 18px;">
+      <div style="font-family: 'Exo 2', sans-serif; font-size: 13px; font-weight: 700; color: var(--orange-light); margin-bottom: 6px;">Do we need Telegram Premium?</div>
+      <div style="font-size: 12px; color: var(--muted); line-height: 1.7;">No — not at any stage of this plan. All group and channel features used here have always been free on Telegram and remain free. The only limit worth being aware of is that one free account can create up to 10 public groups. Since our subgroups are private, this is largely a non-issue — and at any stage where more groups are needed, spreading creation across two or three admin accounts costs nothing and takes minutes. Premium at £4.99/month per account is available if needed later, but there is no requirement to spend anything to build or scale this community.</div>
+    </div>
+
+  </div>
+
+  <!-- Outcomes -->
+  <div class="section-title">What this delivers</div>
+  <div class="outcomes-grid">
+    <div class="outcome-item">
+      <div class="outcome-dot orange"></div>
+      <div class="outcome-text"><strong>Single source of truth</strong>Admins post once. All groups receive the message instantly and consistently.</div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-dot teal"></div>
+      <div class="outcome-text"><strong>Community-wide ban protection</strong>Rose Federation means one ban covers all groups. Bad actors cannot hop between subgroups.</div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-dot orange"></div>
+      <div class="outcome-text"><strong>Improved member experience</strong>Smaller groups mean conversations are readable, followable, and engaging.</div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-dot teal"></div>
+      <div class="outcome-text"><strong>Full admin visibility</strong>Admins can enter, monitor, and engage in any subgroup at any time.</div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-dot orange"></div>
+      <div class="outcome-text"><strong>Scalable infrastructure</strong>Additional groups can be added as the community grows, with no change to the underlying setup.</div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-dot teal"></div>
+      <div class="outcome-text"><strong>Zero custom code</strong>Everything is built on free, proven, off-the-shelf tools. No ongoing maintenance burden.</div>
+    </div>
+  </div>
+
+  <!-- Tools -->
+  <div class="section-title">Tools required</div>
+  <div class="tools-row">
+    <div class="tool-card">
+      <div class="tool-name">Telegram</div>
+      <div class="tool-desc">Channel, supergroups, admin controls, invite links</div>
+      <div class="tool-cost">Free</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">Rose Bot</div>
+      <div class="tool-desc">Moderation, screening, rules, warnings, Federation bans</div>
+      <div class="tool-cost">Free</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">Broadcast Bot</div>
+      <div class="tool-desc">Auto-forwards channel posts into all subgroups</div>
+      <div class="tool-cost">Free</div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-brand"><span class="bio">Bio</span><span class="pulse">Pulse</span> Peptides — Community Infrastructure v2</div>
+  <div class="footer-date">Updated March 2026</div>
+</footer>
+
+</body>
+</html>
